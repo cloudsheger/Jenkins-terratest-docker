@@ -1,4 +1,4 @@
-FROM golang:1.18
+FROM golang:1.21.1
 LABEL maintainer="Cloudsheger"
 
 # Change was made to debian packages to include the revision.

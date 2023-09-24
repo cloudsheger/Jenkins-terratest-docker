@@ -8,22 +8,22 @@ import (
 )
 
 func TestDockerfile(t *testing.T) {
-    tag := "austincloud/terratest"
-    // This still needs to be the actual version of terraform
-    tfVersion := "1.4.5"
-    goVersion := "1.18"
+	tag := "cloudsheger/terratest"
+	// This still needs to be the actual version of terraform
+	tfVersion := "1.5.7"
+	goVersion := "1.21.1"
 
-    buildOptions := &docker.BuildOptions{
-        Tags: []string{tag},
-    }
+	buildOptions := &docker.BuildOptions{
+		Tags: []string{tag},
+	}
 
-    docker.Build(t, "../", buildOptions)
+	docker.Build(t, "../", buildOptions)
 
-    goOpts := &docker.RunOptions{Command: []string{"go", "version"}}
-    goOutput := docker.Run(t, tag, goOpts)
-    assert.Contains(t, goOutput, goVersion)
+	goOpts := &docker.RunOptions{Command: []string{"go", "version"}}
+	goOutput := docker.Run(t, tag, goOpts)
+	assert.Contains(t, goOutput, goVersion)
 
-    tfOpts := &docker.RunOptions{Command: []string{"terraform", "--version"}}
-    tfOutput := docker.Run(t, tag, tfOpts)
-    assert.Contains(t, tfOutput, tfVersion)
+	tfOpts := &docker.RunOptions{Command: []string{"terraform", "--version"}}
+	tfOutput := docker.Run(t, tag, tfOpts)
+	assert.Contains(t, tfOutput, tfVersion)
 }

@@ -1,5 +1,5 @@
 # docker-terratest
-[![CI](https://github.com/austincloudguru/docker-terratest/workflows/CI/badge.svg?event=push)](https://github.com/austincloudguru/docker-terratest/actions?query=workflow%3ACI)
+[![CI](https://github.com/cloudsheger/docker-terratest/workflows/CI/badge.svg?event=push)](https://github.com/cloudsheger/docker-terratest/actions?query=workflow%3ACI)
 
 This repo contains a docker image used to test Terraform resources with Terratest.  The container is run with the `user` terratest, uid = 1000 so that any terraform related files are not created as root.
 
@@ -9,7 +9,7 @@ Terraform Version: Same as the docker tag
 ## Building the Container
 Checkout the repository.
 ```bash
-git clone git@github.com:austincloudguru/docker-terratest
+git clone git@github.com:cloudsheger/Jenkins-terratest-docker.git
 ```
 
 Build the Docker Image:
@@ -25,7 +25,7 @@ __Running it with AWS environmental variables__
 docker run --rm -it \
     -v $PWD:/go/src/app \
     --env-file <(env | grep "^AWS") \
-    austincloud/terratest go test -v
+    cloudsheger/terratest go test -v
 ```
 
 __Running it using AWS credential files__ 
@@ -33,13 +33,13 @@ __Running it using AWS credential files__
 docker run --rm -it \
     -v $PWD:/go/src/app \
     -v $(cd ~ && pwd)/.aws:/terratest/.aws \
-    -e AWS_PROFILE=dev \
-    austincloud/terratest go test -v
+    -e AWS_PROFILE=default \
+    cloudsheger/terratest go test -v
 ```
 
 
 ## Authors
-Module is maintained by [Mark Honomichl](https://github.com/austincloudguru).
+Module is maintained by [Mark Honomichl](https://github.com/cloudsheger).
 
 ## License
 MIT Licensed.  See LICENSE for full details
